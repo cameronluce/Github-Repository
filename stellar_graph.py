@@ -1,7 +1,10 @@
+#Ensure stellar data is in the same folder as the .py or .ipynb to ensure they correctly load, regardless of location
+
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
+#reads files and locally stores data
 hb006 = pd.read_csv('hb0060z019s.dat', sep='\s+', header = 0, on_bad_lines = 'warn')
 hb010 = pd.read_csv('hb0100z019s.dat', sep='\s+', header = 0, on_bad_lines = 'warn')
 hb020 = pd.read_csv('hb0200z019s.dat', sep='\s+', header = 0, on_bad_lines = 'warn')
@@ -15,6 +18,7 @@ ms100 = pd.read_csv('ms1000z019s.dat', sep='\s+', header = 0, on_bad_lines = 'wa
 ms150 = pd.read_csv('ms1500z019s.dat', sep='\s+', header = 0, on_bad_lines = 'warn')
 ms200 = pd.read_csv('ms2000z019s.dat', sep='\s+', header = 0, on_bad_lines = 'warn')
 
+#plots all graphs
 plt.plot(hb006['logTef'], hb006['logL'])
 plt.plot(hb010['logTef'], hb010['logL'])
 plt.plot(hb020['logTef'], hb020['logL'])
@@ -34,6 +38,7 @@ plt.ylabel('log(L)')
 plt.gca().invert_xaxis()
 plt.style.use('ggplot')
 
+#plots helium burning graphs
 plt.plot(hb006['logTef'], hb006['logL'])
 plt.plot(hb010['logTef'], hb010['logL'])
 plt.plot(hb020['logTef'], hb020['logL'])
@@ -44,6 +49,7 @@ plt.ylabel('log(L)')
 plt.gca().invert_xaxis()
 plt.style.use('ggplot')
 
+#plots main sequence
 plt.plot(ms006['logTef'], ms006['logL'])
 plt.plot(ms010['logTef'], ms010['logL'])
 plt.plot(ms020['logTef'], ms020['logL'])
