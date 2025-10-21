@@ -1,0 +1,14 @@
+- make sure to comment on everything, shows you understand what your code is doing and how/why
+- always ask questions if you're stuck
+
+- not using any libraries unless explicitly stated
+- pseudocode is required for every main program AND function - examples in notebook 2
+- functions should be written with split declaration at the top (before MAIN) and definition at the bottom (below MAIN)
+- use a 'python style' form of indentation in your code (it's not necessary in C but is good practice as code is more readable)
+
+if you have a bug check the following:
+- always import stdio.h
+- caes sensitive
+- semicolons, put them everywhere!
+- double and single quotes are different
+- define everything
