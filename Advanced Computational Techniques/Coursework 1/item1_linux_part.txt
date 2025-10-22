@@ -20,14 +20,41 @@ end
 
 (a) name 3 ways in which this code can be optimized, be specific. (6 marks)
 
+- i loop should be nested within j loop, allows the code to run quicker as the data is being fetched from the L1 and L2 memory banks instead of L3, which takes a magnitude
+  less clock time
+- k loop should be nested outside of the i and j loop, with the do k code within the centre of the nest, as follows:
+
+do k = 1, 512
+  do j = 1, 512
+    do i = 1, 512
+      a(i,j,k) = 100 * dexp(pi/2).
+      write(6,*) a(i,j,k)
+    enddo
+  enddo
+enddo
+
+- calculate dexp(pi/2) outside of the loop and call back to it, this saves on clock time as divisions and math functions are costly in clock time
+
 (b) what in addition to (a) can be done to speed this code up at runtime? (2 marks)
+
+- utilise an optimisation flag when compiling, usually -O2, as the compiler can perform additional modifications to optimise the code 
 
 (c) how large in bytes will be the output file? (2 marks)
 
+- real*8 => 8 bytes per number, 512*512*512 = 134217728 bytes
+
 (d) the world’s first real supercomputer, the Cray-1 which debuted in 1976, had 170 MB of RAM. Could you have run this code on that machine (why or why not)? (2 marks)
 
+- 134217728 bytes = ~134MB, yes Cray-1 could've run this code as it had 170MB of RAM
 
-(2) You want to submit a run with zeusmp.x to Sciama on 512 cores to run for 24 hours. Modify the batch sub- mission script in the supercomputing primer to do this, assuming 16 cores per node and executing an MPI version of the code. (5 marks).
+(2) You want to submit a run with zeusmp.x to Sciama on 512 cores to run for 24 hours. Modify the batch submission script in the supercomputing primer to do this, assuming 16 cores per node and executing an MPI version of the code. (5 marks).
+
+#!/bin/bash
+#PBS -1 waalltime=24:00:00
+#PBS -1 nodes=32:ppn=16
+#PBS -1 /users/username/code
+
+mpirun -np 512 ./code code.param > log.out
 
 (3) You have a file containing the following vegetables:
 tomato
